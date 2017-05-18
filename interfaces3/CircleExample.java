@@ -16,7 +16,6 @@ import javafx.event.ActionEvent;
 
          
 public class CircleExample extends Application { 
-    static int dx = 1;
    @Override 
    public void start(Stage stage) { 
  
@@ -33,20 +32,21 @@ public class CircleExample extends Application {
       Scene scene = new Scene(root, 500, 500) ;   
       stage.setTitle("circulo centro") ; 
 
-      Timeline tl = new Timeline();
-      tl.setCycleCount(Animation.INDEFINITE);
-      KeyFrame moveBall = new KeyFrame(Duration.seconds(.0200),
+      Timeline miTimeline = new Timeline();
+      miTimeline.setCycleCount(Animation.INDEFINITE);
+      KeyFrame mueveCirculo = new KeyFrame(Duration.seconds(.0100),
                 new EventHandler<ActionEvent>() {
 
                     public void handle(ActionEvent event) {
 
                         circle.setTranslateX(circle.getTranslateX() + dx);
+                        circle.setTranslateY(circle.getTranslateY() + dy);
 
                     }
                 });
 
-        tl.getKeyFrames().add(moveBall);
-        tl.play();
+      miTimeline.getKeyFrames().add(mueveCirculo);
+      miTimeline.play();
          
       stage.setScene(scene);          
       stage.show() ;
