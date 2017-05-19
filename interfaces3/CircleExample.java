@@ -15,20 +15,20 @@ import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
+import java.util.Random;
 
          
 public class CircleExample extends Application { 
+   static int dx = 1;
+   static int dy = 1;
    @Override 
    public void start(Stage stage) { 
- 
-      int dx = 1;
-      int dy = 1;
-
+      Random  aleatorio = new Random();
       Circle circle = new Circle() ; 
-      circle.setCenterX(250.0f) ; 
-      circle.setCenterY(250.0f) ; 
+      circle.setCenterX(aleatorio.nextInt(500)) ; 
+      circle.setCenterY(aleatorio.nextInt(500)) ; 
       circle.setRadius(50.0f) ; 
-	  circle.setFill(Color.RED);
+      circle.setFill(Color.RED);
 
       Group root = new Group(circle) ; 
          
@@ -55,6 +55,17 @@ public class CircleExample extends Application {
       miTimeline.setCycleCount(Animation.INDEFINITE);
       KeyFrame mueveCirculo = new KeyFrame(Duration.seconds(.0100),new EventHandler<ActionEvent>() {
                     public void handle(ActionEvent event) {
+                        double xMin = circle.getBoundsInParent().getMinX();
+                        double yMin = circle.getBoundsInParent().getMinY();
+                        double xMax = circle.getBoundsInParent().getMaxX();
+                        double yMax = circle.getBoundsInParent().getMaxY();
+
+                        if (xMin < 0 || xMax > scene.getWidth()) {
+                            dx = dx * -1;
+                        }
+                        if (yMin < 0 || yMax > scene.getHeight()) {
+                            dy = dy * -1;
+                        }
 
                         circle.setTranslateX(circle.getTranslateX() + dx);
                         circle.setTranslateY(circle.getTranslateY() + dy);
