@@ -25,9 +25,10 @@ public class CircleExample extends Application {
    public void start(Stage stage) { 
       Random  aleatorio = new Random();
       Circle circle = new Circle() ; 
-      circle.setCenterX(aleatorio.nextInt(500)) ; 
-      circle.setCenterY(aleatorio.nextInt(500)) ; 
-      circle.setRadius(50.0f) ; 
+     
+       circle.setRadius(50.0f) ; 
+      circle.setCenterX(aleatorio.nextInt(450) + circle.getRadius()) ; 
+      circle.setCenterY(aleatorio.nextInt(450) + circle.getRadius()) ; 
       circle.setFill(Color.RED);
 
       Group root = new Group(circle) ; 
@@ -53,7 +54,7 @@ public class CircleExample extends Application {
         root.getChildren().add(parar);
 
       miTimeline.setCycleCount(Animation.INDEFINITE);
-      KeyFrame mueveCirculo = new KeyFrame(Duration.seconds(.0100),new EventHandler<ActionEvent>() {
+      KeyFrame mueveCirculo = new KeyFrame(Duration.seconds(.00100),new EventHandler<ActionEvent>() {
                     public void handle(ActionEvent event) {
                         double xMin = circle.getBoundsInParent().getMinX();
                         double yMin = circle.getBoundsInParent().getMinY();
