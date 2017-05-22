@@ -82,7 +82,7 @@ public class CircleExample extends Application {
                         if (xMin < 0 || xMax > scene.getWidth()) {
                             dx = dx * -1;
                         }
-                        if (yMin < 0 || yMax > scene.getHeight()) {
+                        if (yMin < 0) {
                             dy = dy * -1;
                         }
                         if (circle.getBoundsInParent().intersects(r.getBoundsInParent())) {
